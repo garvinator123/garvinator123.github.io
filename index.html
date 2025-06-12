@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Star Chemical Simulation</title>
+    <style>
+        body { 
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            font-family: Arial, sans-serif;
+        }
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        #controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+        .button {
+            background: rgba(0, 150, 255, 0.2);
+            border: 1px solid #0088ff;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background: rgba(0, 150, 255, 0.4);
+        }
+        .button:disabled {
+            background: rgba(100, 100, 100, 0.2);
+            border-color: #444;
+            cursor: not-allowed;
+        }
+        #info-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #0f0;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            display: none;
+            border: 1px solid #0f0;
+        }
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #0f0;
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading" class="loading">Loading Death Star Simulation...</div>
+    
+    <div id="controls">
+        <button id="hyperspace" class="button">Jump to Hyperspace</button>
+        <button id="zoomEngines" class="button" disabled>Examine Engines</button>
+        <button id="powerUp" class="button" disabled>Power Up Laser</button>
+        <button id="examineChemistry" class="button" disabled>Examine Laser Chemistry</button>
+        <button id="fire" class="button" disabled>Fire Superlaser</button>
+        <button id="analyze" class="button" disabled>Analyze Impact</button>
+        <button id="reset" class="button" disabled>Reset Simulation</button>
+    </div>
+
+    <div id="info-panel"></div>
+
+    <!-- Three.js and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="simulation.js"></script>
+</body>
+</html>
