@@ -1316,10 +1316,12 @@ class DeathStarSimulation {
 
     createEngineSection(deathStar) {
         const engineSection = new THREE.Group();
-        engineSection.position.set(0, -10, -15); // Position at back of Death Star
+        engineSection.position.set(0, 0, 0); // Position at center of Death Star
 
-        // Create single large galvanic cell
+        // Create single large galvanic cell positioned at the core
         this.galvanicCell = this.createGalvanicCell();
+        // Scale it down to fit better at the center
+        this.galvanicCell.scale.setScalar(0.6);
         engineSection.add(this.galvanicCell);
 
         deathStar.add(engineSection);
@@ -1664,13 +1666,13 @@ class DeathStarSimulation {
         const targetPos = new THREE.Vector3();
         engineSection.getWorldPosition(targetPos);
 
-        // Animate camera movement
+        // Animate camera movement - zoom much closer since galvanic cell is now at center
         const startPos = this.camera.position.clone();
         const startTarget = this.controls.target.clone();
         const endPos = new THREE.Vector3(
-            targetPos.x,
-            targetPos.y + 5,
-            targetPos.z + 20
+            targetPos.x + 8,  // Position camera closer and at an angle
+            targetPos.y + 3,  // Slightly above center
+            targetPos.z + 6   // Much closer to the center (was 20, now 6)
         );
 
         let progress = 0;
