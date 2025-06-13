@@ -423,21 +423,6 @@ class DeathStarSimulation {
         
         this.scene.add(this.energyParticles);
 
-        // Add heat distortion effect
-        const heatGeometry = new THREE.PlaneGeometry(beamLength, 20, 50, 1);
-        const heatMaterial = new THREE.MeshPhongMaterial({
-            color: 0xff0000,
-            transparent: true,
-            opacity: 0.2,
-            emissive: 0xff0000,
-            emissiveIntensity: 0.5,
-        });
-
-        this.heatDistortion = new THREE.Mesh(heatGeometry, heatMaterial);
-        this.heatDistortion.position.copy(beamPosition);
-        this.heatDistortion.lookAt(beamPosition.clone().add(superlaserDirection));
-        this.scene.add(this.heatDistortion);
-
         // Camera animation for firing sequence
         const cameraPos = new THREE.Vector3().copy(superlaserWorldPos).add(
             new THREE.Vector3().crossVectors(superlaserDirection, new THREE.Vector3(0, 1, 0))
@@ -469,7 +454,7 @@ class DeathStarSimulation {
         this.state = 'analyzing';
 
         // Create target planet
-        const planetGeometry = new THREE.SphereGeometry(30, 32, 32);
+        const planetGeometry = new THREE.SphereGeometry(30, 64, 64);
         const planetMaterial = new THREE.MeshPhongMaterial({
             color: 0x4444ff,
             shininess: 30,
@@ -494,115 +479,406 @@ class DeathStarSimulation {
         
         this.scene.add(this.targetPlanet);
 
-        // Create impact point on planet surface closest to laser
-        const impactGeometry = new THREE.SphereGeometry(5, 32, 32);
-        const impactMaterial = new THREE.MeshPhongMaterial({
-            color: 0xff0000,
-            emissive: 0xff0000,
-            emissiveIntensity: 1,
-            transparent: true,
-            opacity: 0.8
-        });
-
-        this.impactPoint = new THREE.Mesh(impactGeometry, impactMaterial);
-        this.impactPoint.position.copy(this.targetPlanet.position).add(
-            superlaserDirection.clone().multiplyScalar(-29) // Position on planet surface facing the laser
-        );
-        this.scene.add(this.impactPoint);
-
-        // Create plasma particles
-        this.plasmaParticles = new THREE.Group();
-        for (let i = 0; i < 500; i++) {
-            const plasmaGeometry = new THREE.SphereGeometry(0.5, 8, 8);
-            const plasmaMaterial = new THREE.MeshPhongMaterial({
-                color: 0xff3300,
-                emissive: 0xff3300,
-                emissiveIntensity: 1,
-                transparent: true,
-                opacity: 0.8
-            });
-
-            const particle = new THREE.Mesh(plasmaGeometry, plasmaMaterial);
-            particle.position.copy(this.impactPoint.position);
-            
-            // Random initial velocity
-            particle.userData.velocity = new THREE.Vector3(
-                (Math.random() - 0.5) * 2,
-                (Math.random() - 0.5) * 2,
-                (Math.random() - 0.5) * 2
-            );
-            
-            this.plasmaParticles.add(particle);
-        }
-        this.scene.add(this.plasmaParticles);
-
-        // Create shockwave ring
-        const ringGeometry = new THREE.RingGeometry(0, 1, 32);
-        const ringMaterial = new THREE.MeshBasicMaterial({
+        // Create inner glow sphere for heating effect
+        const innerGlowGeometry = new THREE.SphereGeometry(29, 32, 32);
+        const innerGlowMaterial = new THREE.MeshBasicMaterial({
             color: 0xff0000,
             transparent: true,
-            opacity: 0.5,
-            side: THREE.DoubleSide
+            opacity: 0,
+            side: THREE.BackSide
         });
 
-        this.shockwave = new THREE.Mesh(ringGeometry, ringMaterial);
-        this.shockwave.position.copy(this.impactPoint.position);
-        this.shockwave.lookAt(this.camera.position);
-        this.scene.add(this.shockwave);
+        this.innerGlow = new THREE.Mesh(innerGlowGeometry, innerGlowMaterial);
+        this.innerGlow.position.copy(this.targetPlanet.position);
+        this.scene.add(this.innerGlow);
 
-        // Position camera for impact view
-        const cameraPos = new THREE.Vector3(
-            this.targetPlanet.position.x - 100,
-            this.targetPlanet.position.y + 50,
-            this.targetPlanet.position.z - 100
-        );
+        // Position camera for dramatic view
+        const perpendicular = new THREE.Vector3().crossVectors(
+            superlaserDirection, 
+            new THREE.Vector3(0, 1, 0)
+        ).normalize();
+        
+        const cameraPos = new THREE.Vector3()
+            .copy(this.targetPlanet.position)
+            .add(perpendicular.multiplyScalar(120))
+            .add(new THREE.Vector3(0, 60, 0))
+            .add(superlaserDirection.clone().multiplyScalar(-80));
 
-        let progress = 0;
-        const animate = () => {
-            if (progress >= 1) {
-                document.getElementById('reset').disabled = false;
+        // Animate camera movement to the planet
+        const startPos = this.camera.position.clone();
+        const startTarget = this.controls.target.clone();
+        let cameraProgress = 0;
+
+        const animateCamera = () => {
+            if (cameraProgress >= 1) {
+                this.startExplosionSequence();
                 return;
             }
 
-            progress += 0.002;
-            const ease = 1 - Math.pow(1 - progress, 3);
+            cameraProgress += 0.007; // Much slower camera movement
+            const ease = 1 - Math.pow(1 - cameraProgress, 3);
 
-            // Move camera
-            this.camera.position.lerp(cameraPos, 0.02);
-            this.controls.target.lerp(this.targetPlanet.position, 0.02);
+            this.camera.position.lerpVectors(startPos, cameraPos, ease);
+            this.controls.target.lerpVectors(startTarget, this.targetPlanet.position, ease);
+            this.controls.update();
 
-            // Expand impact point
-            this.impactPoint.scale.setScalar(1 + progress * 5);
-            this.impactPoint.material.opacity = 0.8 - progress * 0.3;
+            requestAnimationFrame(animateCamera);
+        };
 
-            // Expand shockwave
-            this.shockwave.scale.setScalar(progress * 50);
-            this.shockwave.material.opacity = 0.5 - progress * 0.5;
+        animateCamera();
+    }
 
-            // Planet destruction effects
-            this.targetPlanet.material.opacity = 1 - progress * 0.5;
-            
-            // Distort planet geometry
-            const vertices = this.targetPlanet.geometry.attributes.position.array;
-            for (let i = 0; i < vertices.length; i += 3) {
-                const x = vertices[i];
-                const y = vertices[i + 1];
-                const z = vertices[i + 2];
-                const distance = Math.sqrt(x * x + y * y + z * z);
-                const distortionAmount = Math.sin(distance + progress * 10) * progress;
-                vertices[i] *= 1 + distortionAmount * 0.2;
-                vertices[i + 1] *= 1 + distortionAmount * 0.2;
-                vertices[i + 2] *= 1 + distortionAmount * 0.2;
+    startExplosionSequence() {
+        let phase = 'heating'; // heating -> expanding -> exploding -> shockwave
+        let progress = 0;
+        const totalDuration = 7500; // 7.5 seconds total
+        const startTime = Date.now();
+        this.explosionStartTime = startTime;
+
+        // Create crack lines on planet surface
+        this.createPlanetCracks();
+
+        const animate = () => {
+            const currentTime = Date.now();
+            const elapsed = currentTime - startTime;
+            progress = Math.min(elapsed / totalDuration, 1);
+
+            // Determine current phase
+            if (progress < 0.25) {
+                phase = 'heating';
+            } else if (progress < 0.5) {
+                phase = 'expanding';
+            } else if (progress < 0.875) {
+                phase = 'exploding';
+            } else {
+                phase = 'shockwave';
             }
-            this.targetPlanet.geometry.attributes.position.needsUpdate = true;
 
-            // Update chemistry info with current temperature and reaction progress
-            this.showChemistryInfo('impact');
+            this.updateExplosionPhase(phase, progress);
 
-            requestAnimationFrame(animate);
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                // Explosion completed - zoom out to final wide view
+                this.zoomToFinalView();
+                document.getElementById('reset').disabled = false;
+            }
         };
 
         animate();
+    }
+
+    createPlanetCracks() {
+        this.cracks = new THREE.Group();
+        
+        for (let i = 0; i < 20; i++) {
+            const crackGeometry = new THREE.CylinderGeometry(0.1, 0.1, 60, 8);
+            const crackMaterial = new THREE.MeshBasicMaterial({
+                color: 0xff4400,
+                emissive: 0xff4400,
+                emissiveIntensity: 0,
+                transparent: true,
+                opacity: 0
+            });
+
+            const crack = new THREE.Mesh(crackGeometry, crackMaterial);
+            
+            crack.position.copy(this.targetPlanet.position);
+            crack.rotation.set(
+                Math.random() * Math.PI,
+                Math.random() * Math.PI,
+                Math.random() * Math.PI
+            );
+
+            this.cracks.add(crack);
+        }
+        
+        this.scene.add(this.cracks);
+    }
+
+    updateExplosionPhase(phase, progress) {
+        const phaseProgress = this.getPhaseProgress(phase, progress);
+
+        switch (phase) {
+            case 'heating':
+                this.updateHeatingPhase(phaseProgress);
+                break;
+            case 'expanding':
+                this.updateExpandingPhase(phaseProgress);
+                break;
+            case 'exploding':
+                this.updateExplodingPhase(phaseProgress);
+                break;
+            case 'shockwave':
+                this.updateShockwavePhase(phaseProgress);
+                break;
+        }
+
+        this.showChemistryInfo('impact');
+    }
+
+    updateHeatingPhase(progress) {
+        const heatIntensity = progress;
+        
+        // Inner glow becomes more visible
+        this.innerGlow.material.opacity = heatIntensity * 0.6;
+        this.innerGlow.scale.setScalar(1 + heatIntensity * 0.1);
+        
+        // Planet color shifts to red
+        const redAmount = heatIntensity * 0.8;
+        this.targetPlanet.material.color.setRGB(
+            0.27 + redAmount,
+            0.27 - redAmount * 0.2,
+            1.0 - redAmount * 0.9
+        );
+        
+        // Add emissive red glow
+        this.targetPlanet.material.emissive.setRGB(
+            redAmount * 0.5,
+            0,
+            0
+        );
+        this.targetPlanet.material.emissiveIntensity = redAmount;
+
+        // Start showing cracks
+        if (progress > 0.5) {
+            const crackProgress = (progress - 0.5) / 0.5;
+            this.cracks.children.forEach(crack => {
+                crack.material.opacity = crackProgress * 0.8;
+                crack.material.emissiveIntensity = crackProgress * 2;
+            });
+        }
+    }
+
+    updateExpandingPhase(progress) {
+        // Planet starts to expand and crack more
+        const expansion = 1 + progress * 0.3;
+        this.targetPlanet.scale.setScalar(expansion);
+        this.innerGlow.scale.setScalar(expansion * 1.1);
+
+        // Cracks become more visible
+        this.cracks.children.forEach((crack, index) => {
+            crack.material.opacity = 0.8 + progress * 0.2;
+            crack.material.emissiveIntensity = 2 + progress * 3;
+            crack.scale.setScalar(1 + progress * 0.5);
+            
+            // Add some random movement to cracks
+            crack.rotation.x += 0.01 * Math.sin(Date.now() * 0.001 + index);
+            crack.rotation.y += 0.01 * Math.cos(Date.now() * 0.001 + index);
+        });
+
+        // Planet becomes more red and bright
+        this.targetPlanet.material.emissiveIntensity = 1 + progress * 2;
+        this.innerGlow.material.opacity = 0.6 + progress * 0.4;
+
+        // Surface distortion
+        const vertices = this.targetPlanet.geometry.attributes.position.array;
+        for (let i = 0; i < vertices.length; i += 3) {
+            const x = vertices[i];
+            const y = vertices[i + 1];
+            const z = vertices[i + 2];
+            const distance = Math.sqrt(x * x + y * y + z * z);
+            const distortion = Math.sin(distance * 0.1 + Date.now() * 0.01) * progress * 2;
+            
+            vertices[i] += (Math.random() - 0.5) * distortion;
+            vertices[i + 1] += (Math.random() - 0.5) * distortion;
+            vertices[i + 2] += (Math.random() - 0.5) * distortion;
+        }
+        this.targetPlanet.geometry.attributes.position.needsUpdate = true;
+    }
+
+    updateExplodingPhase(progress) {
+        if (!this.explosionStarted) {
+            this.explosionStarted = true;
+            
+            // Remove green laser beam and energy particles
+            if (this.laserBeam) {
+                this.scene.remove(this.laserBeam);
+                this.laserBeam = null;
+            }
+            
+            if (this.energyParticles) {
+                this.scene.remove(this.energyParticles);
+                this.energyParticles = null;
+            }
+            
+            this.createExplosionDebris();
+            this.createMassiveShockwave();
+        }
+
+        // Planet becomes completely white-hot
+        const explosionIntensity = progress;
+        
+        this.targetPlanet.material.emissiveIntensity = 3 + explosionIntensity * 7;
+        this.targetPlanet.material.color.setRGB(1, 1, 1);
+        this.targetPlanet.scale.setScalar(1.3 + explosionIntensity * 2);
+        this.targetPlanet.material.opacity = 1 - explosionIntensity * 0.8;
+
+        // Inner glow explodes outward
+        this.innerGlow.scale.setScalar(1.4 + explosionIntensity * 5);
+        this.innerGlow.material.opacity = 1 - explosionIntensity * 0.5;
+
+        // Animate debris
+        if (this.debris && progress < 0.8) {
+            this.debris.children.forEach(piece => {
+                piece.position.add(piece.userData.velocity);
+                piece.userData.velocity.multiplyScalar(1.02);
+                piece.rotation.x += piece.userData.rotationSpeed.x;
+                piece.rotation.y += piece.userData.rotationSpeed.y;
+                piece.rotation.z += piece.userData.rotationSpeed.z;
+            });
+        }
+
+        // Make cracks disappear
+        this.cracks.children.forEach(crack => {
+            crack.material.opacity *= 0.9;
+        });
+    }
+
+    createExplosionDebris() {
+        this.debris = new THREE.Group();
+        
+        // Create 2500 small granular particles
+        for (let i = 0; i < 2500; i++) {
+            let debrisGeometry, size;
+            const particleType = Math.random();
+            
+            if (particleType < 0.6) {
+                // Small irregular chunks
+                size = Math.random() * 0.8 + 0.2;
+                debrisGeometry = new THREE.BoxGeometry(
+                    size * (0.5 + Math.random() * 0.5),
+                    size * (0.5 + Math.random() * 0.5),
+                    size * (0.5 + Math.random() * 0.5)
+                );
+            } else if (particleType < 0.8) {
+                // Tiny spherical particles
+                size = Math.random() * 0.5 + 0.1;
+                debrisGeometry = new THREE.SphereGeometry(size, 6, 6);
+            } else {
+                // Very small angular fragments
+                size = Math.random() * 0.3 + 0.1;
+                debrisGeometry = new THREE.TetrahedronGeometry(size);
+            }
+            
+            const debrisMaterial = new THREE.MeshPhongMaterial({
+                color: new THREE.Color().setHSL(Math.random() * 0.15 + 0.02, 0.7 + Math.random() * 0.3, 0.4 + Math.random() * 0.4),
+                emissive: new THREE.Color().setHSL(0.05 + Math.random() * 0.1, 1, 0.2 + Math.random() * 0.3),
+                emissiveIntensity: 0.8 + Math.random() * 0.4,
+                transparent: true,
+                opacity: 0.8 + Math.random() * 0.2
+            });
+
+            const piece = new THREE.Mesh(debrisGeometry, debrisMaterial);
+            piece.position.copy(this.targetPlanet.position);
+            
+            // Add random offset and velocity
+            piece.position.x += (Math.random() - 0.5) * 2;
+            piece.position.y += (Math.random() - 0.5) * 2;
+            piece.position.z += (Math.random() - 0.5) * 2;
+            
+            const speed = Math.random() * 12 + 3;
+            const velocity = new THREE.Vector3(
+                (Math.random() - 0.5) * speed,
+                (Math.random() - 0.5) * speed,
+                (Math.random() - 0.5) * speed
+            );
+            piece.userData.velocity = velocity;
+            
+            const rotationMultiplier = 1 / (size + 0.1);
+            piece.userData.rotationSpeed = new THREE.Vector3(
+                (Math.random() - 0.5) * 0.3 * rotationMultiplier,
+                (Math.random() - 0.5) * 0.3 * rotationMultiplier,
+                (Math.random() - 0.5) * 0.3 * rotationMultiplier
+            );
+
+            this.debris.add(piece);
+        }
+        
+        // Add 30 larger chunks
+        for (let i = 0; i < 30; i++) {
+            const size = Math.random() * 2 + 1;
+            const debrisGeometry = new THREE.BoxGeometry(
+                size * (0.7 + Math.random() * 0.6),
+                size * (0.7 + Math.random() * 0.6),
+                size * (0.7 + Math.random() * 0.6)
+            );
+            const debrisMaterial = new THREE.MeshPhongMaterial({
+                color: new THREE.Color().setHSL(Math.random() * 0.1, 0.8, 0.5),
+                emissive: new THREE.Color().setHSL(0.05, 1, 0.25),
+                emissiveIntensity: 1,
+                transparent: true,
+                opacity: 0.9
+            });
+
+            const piece = new THREE.Mesh(debrisGeometry, debrisMaterial);
+            piece.position.copy(this.targetPlanet.position);
+            
+            const velocity = new THREE.Vector3(
+                (Math.random() - 0.5) * 6,
+                (Math.random() - 0.5) * 6,
+                (Math.random() - 0.5) * 6
+            );
+            piece.userData.velocity = velocity;
+            
+            piece.userData.rotationSpeed = new THREE.Vector3(
+                (Math.random() - 0.5) * 0.15,
+                (Math.random() - 0.5) * 0.15,
+                (Math.random() - 0.5) * 0.15
+            );
+
+            this.debris.add(piece);
+        }
+        
+        this.scene.add(this.debris);
+    }
+
+    getPhaseProgress(phase, totalProgress) {
+        switch (phase) {
+            case 'heating': return totalProgress / 0.25;
+            case 'expanding': return (totalProgress - 0.25) / 0.25;
+            case 'exploding': return (totalProgress - 0.5) / 0.375;
+            case 'shockwave': return (totalProgress - 0.875) / 0.125;
+            default: return 0;
+        }
+    }
+
+    getCurrentPhase() {
+        if (!this.explosionStartTime) return null;
+        
+        const elapsed = Date.now() - this.explosionStartTime;
+        const progress = Math.min(elapsed / 7000, 1);
+        
+        if (progress < 0.25) return 'heating';
+        else if (progress < 0.5) return 'expanding';
+        else if (progress < 0.875) return 'exploding';
+        else return 'shockwave';
+    }
+
+    updateShockwavePhase(progress) {
+        // Add dramatic camera shake
+        if (progress < 0.5) {
+            const shakeIntensity = (0.5 - progress) * 4;
+            this.camera.position.x += (Math.random() - 0.5) * shakeIntensity;
+            this.camera.position.y += (Math.random() - 0.5) * shakeIntensity;
+            this.camera.position.z += (Math.random() - 0.5) * shakeIntensity;
+        }
+    }
+
+    createMassiveShockwave() {
+        // Create massive shockwave ring
+        const shockwaveGeometry = new THREE.RingGeometry(0, 1, 64);
+        const shockwaveMaterial = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.8,
+            side: THREE.DoubleSide
+        });
+
+        this.massiveShockwave = new THREE.Mesh(shockwaveGeometry, shockwaveMaterial);
+        this.massiveShockwave.position.copy(this.targetPlanet.position);
+        this.massiveShockwave.lookAt(this.camera.position);
+        this.scene.add(this.massiveShockwave);
     }
 
     showChemistryInfo(section) {
@@ -1062,6 +1338,51 @@ class DeathStarSimulation {
         }
 
         this.renderer.render(this.scene, this.camera);
+    }
+
+    zoomToFinalView() {
+        // Get Death Star position
+        const deathStar = this.objects.deathStar;
+        const deathStarPos = new THREE.Vector3();
+        deathStar.getWorldPosition(deathStarPos);
+
+        // Get explosion/planet position
+        const planetPos = this.targetPlanet ? this.targetPlanet.position.clone() : new THREE.Vector3(800, 0, -300);
+
+        // Calculate midpoint between Death Star and explosion
+        const midPoint = new THREE.Vector3().addVectors(deathStarPos, planetPos).multiplyScalar(0.5);
+
+        // Position camera for maximum wide view - far back and up from the midpoint
+        const finalCameraPos = new THREE.Vector3(
+            midPoint.x - 500,
+            midPoint.y + 400,
+            midPoint.z + 800
+        );
+
+        // Look at the midpoint to see both Death Star and explosion
+        const finalTarget = midPoint.clone();
+
+        // Smooth camera transition
+        const startPos = this.camera.position.clone();
+        const startTarget = this.controls.target.clone();
+        let progress = 0;
+
+        const animate = () => {
+            if (progress >= 1) {
+                return;
+            }
+
+            progress += 0.01; // Slower zoom for dramatic effect
+            const ease = 1 - Math.pow(1 - progress, 3);
+
+            this.camera.position.lerpVectors(startPos, finalCameraPos, ease);
+            this.controls.target.lerpVectors(startTarget, finalTarget, ease);
+            this.controls.update();
+
+            requestAnimationFrame(animate);
+        };
+
+        animate();
     }
 }
 
