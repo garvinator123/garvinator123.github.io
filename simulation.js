@@ -890,111 +890,222 @@ class DeathStarSimulation {
         switch(section) {
             case 'engines':
                 content = `
-                    <h3>Galvanic Cell Engines</h3>
-                    <p>The Death Star's engines are powered by massive galvanic cells:</p>
-                    <ul>
-                        <li>Anode (Gray): Zn → Zn²⁺ + 2e⁻</li>
-                        <li>Cathode (Copper): Cu²⁺ + 2e⁻ → Cu</li>
-                        <li>Overall: Zn + Cu²⁺ → Zn²⁺ + Cu</li>
-                    </ul>
-                    <p>The spontaneous electron flow powers the engine systems.</p>
-                    <p>∆G° = -nFE° = -2(96,485)(1.10) = -212.27 kJ/mol</p>
+                    <h3>AP Chemistry Unit 9 (Electrochemistry) — Topic 9.4: Galvanic Cells</h3>
+                    <p>The Death Star's engines are powered by Daniell galvanic cells with separate half-cell compartments demonstrating fundamental electrochemical principles:</p>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Anode Compartment (Left Tank - Zn(s) | ZnSO₃(aq)):</h4>
+                        <p><strong>Oxidation Half-Reaction:</strong> Zn(s) → Zn²⁺(aq) + 2e⁻  E° = +0.76 V</p>
+                        <p><strong>Electrolyte:</strong> ZnSO₃(aq) (zinc sulfite solution)</p>
+                        <p><strong>Particle-Level Process:</strong> Zn atoms lose 2 electrons each, becoming hydrated Zn²⁺ ions</p>
+                        <p><span style="color: #00ffff;">Cyan spheres:</span> Zn²⁺(aq) ions in solution (concentration increases over time)</p>
+                        <p><span style="color: #ff0044;">Red spheres:</span> SO₃²⁻ spectator ions (maintain electrical neutrality)</p>
+                        <p><strong>Observable Changes:</strong> Zinc electrode decreases in mass, solution becomes more concentrated in Zn²⁺</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Cathode Compartment (Right Tank - Cu²⁺(aq) | CuSO₃(aq)):</h4>
+                        <p><strong>Reduction Half-Reaction:</strong> Cu²⁺(aq) + 2e⁻ → Cu(s)  E° = +0.34 V</p>
+                        <p><strong>Electrolyte:</strong> CuSO₃(aq) (copper(II) sulfite solution)</p>
+                        <p><strong>Particle-Level Process:</strong> Cu²⁺ ions gain 2 electrons each, becoming Cu atoms deposited on electrode</p>
+                        <p><span style="color: #ff6600;">Orange spheres:</span> Cu²⁺(aq) ions in solution (concentration decreases over time)</p>
+                        <p><span style="color: #ff0044;">Red spheres:</span> SO₃²⁻ spectator ions (maintain electrical neutrality)</p>
+                        <p><strong>Observable Changes:</strong> Copper electrode increases in mass, solution becomes less concentrated in Cu²⁺</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Salt Bridge Function (NaCl electrolyte):</h4>
+                        <p><span style="color: #666666;">Gray bridge:</span> Contains NaCl electrolyte solution</p>
+                        <p><span style="color: #9900ff;">Purple spheres:</span> Na⁺ ions (migrate toward cathode compartment)</p>
+                        <p><span style="color: #ffffff;">White spheres:</span> Cl⁻ ions (migrate toward anode compartment)</p>
+                        <p><strong>Critical Function:</strong> Maintains electrical neutrality and completes the internal circuit</p>
+                        <p><strong>Without salt bridge:</strong> Charge buildup would stop electron flow</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Thermodynamic Analysis:</h4>
+                        <p><strong>Overall Cell Reaction:</strong> Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)</p>
+                        <p><strong>Standard Cell Potential:</strong> E°<sub>cell</sub> = E°<sub>cathode</sub> - E°<sub>anode</sub> = 0.34V - (-0.76V) = +1.10V</p>
+                        <p><strong>Gibbs Free Energy:</strong> ΔG° = -nFE°<sub>cell</sub> = -2(96,485 C/mol)(1.10 V) = -212 kJ/mol</p>
+                        <p><strong>Spontaneity:</strong> ΔG° < 0, therefore thermodynamically favorable (spontaneous)</p>
+                        <p><span style="color: #ffff00;">Yellow spheres:</span> Electrons flowing through external circuit</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>AP Chemistry Scientific Practices:</h4>
+                        <p><strong>Scientific Practice 1.B:</strong> Describes models illustrating both particulate-level and macroscopic properties</p>
+                        <p><strong>Scientific Practice 4.C:</strong> Explains connection between particulate-level reactions and macroscopic phenomena</p>
+                        <p><strong>Scientific Practice 6.D:</strong> Provides reasoning about electrochemical processes using chemical principles</p>
+                        <p><strong>Topics Integration:</strong> Units 4 (reactions), 6 (thermodynamics), and 9 (electrochemistry)</p>
+                    </div>
                 `;
                 break;
 
             case 'powering':
                 content = `
-                    <h3>Superlaser Power-Up Sequence</h3>
-                    <p>Energy from the galvanic cells is converted to excite electrons in the focusing crystals:</p>
-                    <ul>
-                        <li>E = hf (Planck's equation)</li>
-                        <li>Wavelength: 532nm (green)</li>
-                        <li>Energy per photon: 3.72 x 10⁻¹⁹ J</li>
-                    </ul>
-                    <p>Crystal lattice amplification creates a cascade of coherent photons.</p>
-                    <p>Current Power Level: ${Math.round(this.laserCharge * 100)}%</p>
+                    <h3>AP Chemistry Topic 6.5: Energy Conservation & Electromagnetic Energy</h3>
+                    <p>Energy from the galvanic cells is converted and transferred through multiple stages, demonstrating fundamental conservation principles:</p>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Energy Conversion Chain Analysis:</h4>
+                        <p><strong>Stage 1:</strong> Chemical Energy (galvanic cells) → Electrical Energy (electron flow)</p>
+                        <p><strong>Stage 2:</strong> Electrical Energy → Electromagnetic Energy (photon production)</p>
+                        <p><strong>Thermodynamic Basis:</strong> ΔG° = -212 kJ/mol (spontaneous energy release)</p>
+                        <p><strong>Conservation Principle:</strong> Total energy remains constant throughout all transformations</p>
+                        <p><strong>First Law Application:</strong> ΔU = q - w (energy cannot be created or destroyed)</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Electromagnetic Energy Quantification (Topics 1.7 & 1.8):</h4>
+                        <p><strong>Planck's Quantum Theory:</strong> E = hf = hc/λ</p>
+                        <p><strong>Laser Wavelength:</strong> λ = 532 nm (green light, visible spectrum)</p>
+                        <p><strong>Photon Frequency:</strong> f = c/λ = (3.00 × 10⁸ m/s)/(532 × 10⁻⁹ m) = 5.64 × 10¹⁴ Hz</p>
+                        <p><strong>Energy per Photon:</strong> E = (6.626 × 10⁻³⁴ J·s)(5.64 × 10¹⁴ Hz) = 3.74 × 10⁻¹⁹ J</p>
+                        <p><strong>Energy per Mole of Photons:</strong> E = N<sub>A</sub>hf = (6.022 × 10²³)(3.74 × 10⁻¹⁹ J) = 225 kJ/mol</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Crystal Lattice Amplification Mechanism:</h4>
+                        <p><strong>Population Inversion:</strong> N₂ > N₁ (more electrons in excited state than ground state)</p>
+                        <p><strong>Energy Level Requirement:</strong> E₂ - E₁ = hf (energy gap must equal photon energy)</p>
+                        <p><strong>Stimulated Emission:</strong> Excited state + photon → ground state + 2 coherent photons</p>
+                        <p><strong>Cascade Amplification:</strong> Exponential increase in coherent photon stream</p>
+                        <p><strong>Focusing Crystal Role:</strong> Provides ordered lattice structure for coherent emission</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Power Analysis & System Efficiency:</h4>
+                        <p><strong>Current Power Level:</strong> ${Math.round(this.laserCharge * 100)}% of maximum capacity</p>
+                        <p><strong>Power Equation:</strong> P = E/t = nhf/t (where n = photons per unit time)</p>
+                        <p><strong>Beam Intensity:</strong> I = P/A (power per unit cross-sectional area)</p>
+                        <p><strong>Energy Efficiency:</strong> η = E<sub>electromagnetic</sub>/E<sub>chemical</sub> (real-world conversion limitations)</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>AP Chemistry Scientific Practices Integration:</h4>
+                        <p><strong>Scientific Practice 4.A:</strong> Explains electromagnetic phenomena using quantum models and energy conservation</p>
+                        <p><strong>Scientific Practice 6.D:</strong> Provides quantitative reasoning using chemical principles and mathematical relationships</p>
+                        <p><strong>Scientific Practice 1.E:</strong> Identifies patterns in energy transformations across different systems</p>
+                        <p><strong>Cross-Unit Connections:</strong> Integrates atomic structure (Unit 1), thermodynamics (Unit 6), and electrochemistry (Unit 9)</p>
+                    </div>
                 `;
                 break;
 
             case 'laser':
                 content = `
-                    <h3>Photoelectric Effect & Laser Operation</h3>
-                    <p>The superlaser operates through quantum amplification:</p>
-                    <ol>
-                        <li>Electron excitation: E₂ - E₁ = hf</li>
-                        <li>Stimulated emission in crystals</li>
-                        <li>Coherent photon multiplication</li>
-                        <li>Beam convergence and amplification</li>
-                    </ol>
-                    <p>The focusing crystals create a resonant cavity for photon amplification,
-                    similar to modern laser systems but at unprecedented scale.</p>
-                    <div style="border-top: 1px solid #0f0; margin-top: 10px; padding-top: 10px;">
-                        <p>Einstein's Photoelectric Effect:</p>
-                        <p>KEmax = hf - φ</p>
+                    <h3>Photoelectric Effect & Laser Operation - AP Chemistry Topics 1.7 & 1.8</h3>
+                    <p>The superlaser operates through quantum mechanical processes involving photon-electron interactions:</p>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Photoelectric Effect (Topic 1.8):</h4>
+                        <p><strong>Einstein's Equation:</strong> KE<sub>max</sub> = hf - φ</p>
                         <p>where φ is the work function of the crystal material</p>
+                        <p><strong>Process:</strong> Metal + hν → Metal⁺ + e⁻ (emitted)</p>
+                        <p>Threshold frequency: f₀ = φ/h (minimum frequency for electron emission)</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Laser Physics (Topic 1.7 - Electromagnetic Radiation):</h4>
+                        <p>1. <strong>Population Inversion:</strong> More electrons in excited state than ground state</p>
+                        <p>2. <strong>Stimulated Emission:</strong> Excited electron + photon → 2 coherent photons + ground state electron</p>
+                        <p>3. <strong>Coherent Amplification:</strong> All photons have same frequency, phase, and direction</p>
+                        <p>4. <strong>Resonant Cavity:</strong> Mirrors create standing wave pattern for amplification</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Focusing Crystal Components:</h4>
+                        <p><span style="color: #00ff88;">Green crystals:</span> Active laser medium (similar to ruby or semiconductor)</p>
+                        <p>Energy gap determines laser wavelength: λ = hc/ΔE</p>
+                        <p>Crystal lattice provides structure for coherent emission</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <p><strong>Scientific Practice 1.A:</strong> Describes components illustrating particulate-level properties</p>
+                        <p><strong>Scientific Practice 4.A:</strong> Explains phenomena using quantum models</p>
                     </div>
                 `;
                 break;
                 
             case 'firing':
                 content = `
-                    <h3>Superlaser Firing Sequence</h3>
-                    <p>Energy transfer and quantum phenomena during firing:</p>
-                    <ul>
-                        <li>Beam Energy: 10²⁹ joules</li>
-                        <li>Temperature: >1,000,000K</li>
-                        <li>Photon density: 10²⁴/cm³</li>
-                    </ul>
-                    <p>Quantum mechanical processes:</p>
-                    <ol>
-                        <li>Stimulated emission cascade</li>
-                        <li>Coherent photon amplification</li>
-                        <li>Beam collimation via magnetic containment</li>
-                        <li>Space-time distortion due to energy density</li>
-                    </ol>
-                    <p>Heat transfer mechanisms:</p>
-                    <ul>
-                        <li>Radiative transfer: σT⁴</li>
-                        <li>Plasma formation in target zone</li>
-                        <li>Matter-Energy conversion at impact</li>
-                    </ul>
+                    <h3>Firing Sequence Analysis - AP Chemistry Topics 6.1 & 6.5</h3>
+                    <p>The complete energy transfer sequence demonstrates conservation of energy across multiple scales:</p>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Energy Transfer Chain (Topic 6.5):</h4>
+                        <p>Chemical → Electrical → Electromagnetic → Thermal → Kinetic</p>
+                        <p><strong>Conservation Law:</strong> E<sub>total</sub> = constant (energy cannot be created or destroyed)</p>
+                        <p>Energy transformations follow first law of thermodynamics</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Quantitative Analysis:</h4>
+                        <p><strong>Beam Energy:</strong> E = nhf where n = number of photons</p>
+                        <p>Photon frequency: f = c/λ = 5.64 × 10¹⁴ Hz</p>
+                        <p>Power density: I = E/(A·t) where A = beam cross-section, t = time</p>
+                        <p>Energy flux creates heating at target surface</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Heat Transfer Mechanisms (Topic 6.1):</h4>
+                        <p><strong>Radiative Transfer:</strong> Stefan-Boltzmann law: j = σT⁴</p>
+                        <p><strong>Conductive Transfer:</strong> Fourier's law: q = -kA(dT/dx)</p>
+                        <p>Plasma formation occurs at extreme temperatures</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <p><strong>Scientific Practice 4.A:</strong> Explains phenomena using models</p>
+                        <p><strong>Scientific Practice 6.D:</strong> Justifies claims using chemical principles</p>
+                    </div>
                 `;
                 break;
             
             case 'impact':
                 content = `
-                    <h3>Target Impact Analysis</h3>
-                    <p>Thermodynamic processes at impact site:</p>
-                    <ul>
-                        <li>Initial Temperature: 10⁶ K</li>
-                        <li>Pressure: 10¹² Pa</li>
-                        <li>Energy density: 10¹⁵ J/m³</li>
-                    </ul>
-                    <p>Chemical reactions in atmosphere:</p>
-                    <ol>
-                        <li>N₂ + O₂ → 2NO (ΔH = +180.6 kJ/mol)</li>
-                        <li>2NO + O₂ → 2NO₂ (ΔH = -114.1 kJ/mol)</li>
-                        <li>Plasma formation: e⁻ + M → M⁺ + 2e⁻</li>
-                    </ol>
-                    <p>Matter phase transitions:</p>
-                    <ul>
-                        <li>Solid → Liquid → Gas → Plasma</li>
-                        <li>Core material vaporization</li>
-                        <li>Atmospheric dissociation</li>
-                    </ul>
-                    <p>Conservation of Energy:</p>
-                    <p>E = mc² conversion at impact</p>
+                    <h3>Impact Analysis - AP Chemistry Topics 6.1, 6.2 & 7.1</h3>
+                    <p>When the superlaser strikes the planet, multiple thermodynamic and intermolecular processes occur:</p>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Heat Transfer (Topic 6.1 - Endothermic/Exothermic Processes):</h4>
+                        <p><strong>Heat Capacity Equation:</strong> q = mcΔT</p>
+                        <p>Initial Temperature: ~300K → Final Temperature: >10⁶K</p>
+                        <p><strong>Enthalpy Change:</strong> ΔH = q<sub>p</sub> (heat at constant pressure)</p>
+                        <p>Massive energy input causes extreme temperature rise</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Phase Changes (Topic 7.1 - Intermolecular Forces):</h4>
+                        <p><strong>Vaporization:</strong> SiO₂(s) + energy → SiO₂(g)</p>
+                        <p><strong>Sublimation:</strong> Direct solid → gas transition</p>
+                        <p>Intermolecular forces overcome: London dispersion, dipole-dipole, hydrogen bonding</p>
+                        <p><strong>Phase Diagram:</strong> Extreme conditions exceed critical point</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Chemical Bond Breaking:</h4>
+                        <p><strong>Ionization Energy:</strong> M(g) + energy → M⁺(g) + e⁻</p>
+                        <p>Covalent bonds break: E<sub>bond</sub> < E<sub>thermal</sub></p>
+                        <p>Ionic compounds dissociate completely</p>
+                        <p>Plasma formation at highest energy levels</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <h4>Macroscopic Observations:</h4>
+                        <p>Explosive expansion due to massive volume increase (PV = nRT)</p>
+                        <p>Gravitational binding energy exceeded</p>
+                        <p>Visible light emission from hot gases (blackbody radiation)</p>
+                    </div>
+                    
+                    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+                        <p><strong>Scientific Practice 1.B:</strong> Models illustrating particulate and macroscopic properties</p>
+                        <p><strong>Scientific Practice 4.C:</strong> Connects particulate-level and macroscopic properties</p>
+                    </div>
                 `;
                 break;
         }
 
         infoPanel.innerHTML = content; // Set the content after switch statement
-        infoPanel.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-        infoPanel.style.color = '#0f0';
-        infoPanel.style.padding = '20px';
-        infoPanel.style.borderRadius = '10px';
-        infoPanel.style.maxWidth = '400px';
-        infoPanel.style.zIndex = '1000';
+        infoPanel.style.display = 'block'; // Make sure panel is visible
     }
 
     animate() {
@@ -1008,199 +1119,539 @@ class DeathStarSimulation {
             this.starfield.rotation.z += 0.0001;
         }
 
+        // Animate galvanic cell if engine animation is active
+        if (this.engineAnimationActive && this.galvanicCell) {
+            this.animateGalvanicCell();
+        }
+
         // Animate photons
-        if (this.photons.length > 0) {
+        if (this.photons && this.photons.length > 0) {
             this.photons.forEach((photon, index) => {
-                // Update position
                 photon.position.add(photon.userData.velocity);
                 
-                // Spiral towards convergence chamber
-                const toCenter = new THREE.Vector3(0, 0, 17)
-                    .sub(photon.position)
-                    .normalize()
-                    .multiplyScalar(0.1);
-                
-                photon.userData.velocity.add(toCenter);
-                
-                // Remove if too close to center or too old
-                if (photon.position.distanceTo(new THREE.Vector3(0, 0, 17)) < 0.5) {
+                // Remove photons that have traveled too far
+                if (photon.position.distanceTo(this.objects.superlaser.position) > 50) {
                     this.scene.remove(photon);
                     this.photons.splice(index, 1);
                 }
             });
         }
 
-        // Animate focusing crystals
-        if (this.focusingCrystals && this.state === 'powered') {
-            this.focusingCrystals.forEach(crystal => {
-                crystal.rotation.y += 0.01;
-                crystal.rotation.z += 0.02;
-            });
-        }
+        this.renderer.render(this.scene, this.camera);
+    }
 
-        // Animate electrons in engine cells
-        if (this.engineAnimationActive && this.batteryCells) {
-            this.batteryCells.forEach(battery => {
-                battery.userData.electrons.forEach((electron, i) => {
-                    // Update electron position
-                    electron.userData.time += 0.01;
-                    const t = electron.userData.time;
+    animateGalvanicCell() {
+        if (!this.galvanicCell) return;
 
-                    // Oscillating motion along x-axis
-                    const x = electron.userData.startX + 
-                            Math.sin(t + electron.userData.phase) * 0.8;
-                    
-                    // Vertical oscillation
-                    const y = electron.userData.baseY + 
-                            Math.sin(t * 2 + electron.userData.phase) * 0.2;
+        const time = Date.now() * 0.001;
+        this.galvanicCell.userData.animationTime = time;
 
-                    electron.position.set(x, y, 0);
-                    
-                    // Glow effect
-                    electron.material.emissiveIntensity = 
-                        0.5 + Math.sin(t * 3) * 0.2;
-                });
-            });
-        }
+        // Progress the reaction faster (about 50% over 30 seconds)
+        this.galvanicCell.userData.reactionProgress += 0.0008; // Much faster progression
+        const progress = Math.min(this.galvanicCell.userData.reactionProgress, 0.5);
 
-        if (this.state === 'firing' && this.energyParticles) {
-            this.energyParticles.children.forEach(particle => {
-                // Move particles along beam direction
-                particle.position.add(particle.userData.direction.clone().multiplyScalar(particle.userData.speed));
-                
-                // Reset particles that travel too far
-                const distanceFromStart = particle.position.distanceTo(particle.userData.basePosition);
-                if (distanceFromStart > 800) {
-                    particle.position.copy(particle.userData.basePosition);
-                }
+        // Gradually shrink zinc anode
+        const zincAnode = this.galvanicCell.userData.zincAnode;
+        const zincShrinkage = 1 - progress * 0.6; // Shrink by up to 60%
+        zincAnode.scale.set(1, zincShrinkage, 1);
 
-                // Oscillate particles perpendicular to beam direction
-                const time = Date.now() * 0.01 + particle.userData.offset;
-                const perpendicular1 = new THREE.Vector3().crossVectors(particle.userData.direction, new THREE.Vector3(0, 1, 0)).normalize();
-                const perpendicular2 = new THREE.Vector3().crossVectors(particle.userData.direction, perpendicular1).normalize();
-                
-                const oscillation1 = perpendicular1.clone().multiplyScalar(Math.sin(time) * 0.5);
-                const oscillation2 = perpendicular2.clone().multiplyScalar(Math.cos(time) * 0.5);
-                
-                particle.position.add(oscillation1).add(oscillation2);
+        // Gradually grow copper cathode
+        const copperCathode = this.galvanicCell.userData.copperCathode;
+        const copperGrowth = 1 + progress * 0.4; // Grow by up to 40%
+        copperCathode.scale.set(copperGrowth, 1, copperGrowth);
 
-                // Pulse particle intensity
-                particle.material.emissiveIntensity = 0.5 + Math.sin(time) * 0.5;
-            });
-
-            // Animate heat distortion
-            if (this.heatDistortion) {
-                this.heatDistortion.material.opacity = 0.2 + Math.sin(Date.now() * 0.005) * 0.1;
-                // Distort the geometry for heat wave effect
-                const vertices = this.heatDistortion.geometry.attributes.position.array;
-                for (let i = 0; i < vertices.length; i += 3) {
-                    vertices[i + 1] += Math.sin(Date.now() * 0.001 + vertices[i] * 0.1) * 0.1;
-                }
-                this.heatDistortion.geometry.attributes.position.needsUpdate = true;
+        // Animate electrons flowing along the wire path (anode → top → cathode)
+        this.galvanicCell.userData.electrons.forEach((electron, i) => {
+            const speed = 0.008;
+            electron.userData.progress += speed;
+            
+            if (electron.userData.progress > 1) {
+                electron.userData.progress = 0;
             }
-        }
+            
+            const progress = electron.userData.progress;
+            
+            if (progress < 0.25) {
+                // Moving up left wire (from anode)
+                const upProgress = progress / 0.25;
+                electron.position.set(-5, 4 + upProgress * 4, 0);
+            } else if (progress < 0.75) {
+                // Moving across top wire (left to right)
+                const acrossProgress = (progress - 0.25) / 0.5;
+                electron.position.set(-5 + acrossProgress * 10, 8, 0);
+            } else {
+                // Moving down right wire (to cathode)
+                const downProgress = (progress - 0.75) / 0.25;
+                electron.position.set(5, 8 - downProgress * 4, 0);
+            }
+        });
 
-        if (this.state === 'analyzing' && this.plasmaParticles) {
-            this.plasmaParticles.children.forEach(particle => {
-                // Update position
-                particle.position.add(particle.userData.velocity);
-                
-                // Add gravity-like effect towards planet center
-                const toCenter = this.targetPlanet.position.clone()
-                    .sub(particle.position)
-                    .normalize()
-                    .multiplyScalar(0.1);
-                
-                particle.userData.velocity.add(toCenter);
-                
-                // Add some chaos
-                particle.userData.velocity.x += (Math.random() - 0.5) * 0.1;
-                particle.userData.velocity.y += (Math.random() - 0.5) * 0.1;
-                particle.userData.velocity.z += (Math.random() - 0.5) * 0.1;
-                
-                // Fade out particles
-                particle.material.opacity *= 0.99;
-                
-                // Remove if too faint
-                if (particle.material.opacity < 0.01) {
-                    this.plasmaParticles.remove(particle);
-                }
-            });
-        }
+        // Animate Zn2+ ions in left tank (more ions appear as anode dissolves)
+        this.galvanicCell.userData.zincIons.forEach((ion, i) => {
+            ion.userData.angle += ion.userData.speed;
+            const newRadius = ion.userData.radius + Math.sin(time + i) * 0.2;
+            
+            ion.position.x = ion.userData.centerX + Math.cos(ion.userData.angle) * newRadius;
+            ion.position.z = ion.userData.centerZ + Math.sin(ion.userData.angle) * newRadius;
+            ion.position.y = -4 + Math.sin(time * 0.5 + i) * 3 + 4;
+            
+            // Make ions more visible/concentrated as reaction progresses
+            const opacity = 0.8 + progress * 1.0; // Increase opacity more
+            ion.material.opacity = Math.min(opacity, 1.0);
+            ion.material.transparent = true;
+            
+            // Add more noticeable size increase to show more Zn2+ ions
+            const sizeIncrease = 1 + progress * 0.6;
+            ion.scale.setScalar(sizeIncrease);
+        });
 
-        this.renderer.render(this.scene, this.camera);   
+        // Animate Cu2+ ions in right tank (fewer ions as they get reduced)
+        this.galvanicCell.userData.copperIons.forEach((ion, i) => {
+            ion.userData.angle += ion.userData.speed;
+            const newRadius = ion.userData.radius + Math.sin(time + i + Math.PI) * 0.2;
+            
+            ion.position.x = ion.userData.centerX + Math.cos(ion.userData.angle) * newRadius;
+            ion.position.z = ion.userData.centerZ + Math.sin(ion.userData.angle) * newRadius;
+            ion.position.y = -4 + Math.sin(time * 0.5 + i + Math.PI/2) * 3 + 4;
+            
+            // Make ions less visible/concentrated as they get consumed
+            const opacity = 0.9 - progress * 0.7; // Decrease opacity more
+            ion.material.opacity = Math.max(opacity, 0.2);
+            ion.material.transparent = true;
+            
+            // More noticeable size decrease to show fewer Cu2+ ions
+            const sizeDecrease = 1 - progress * 0.5;
+            ion.scale.setScalar(Math.max(sizeDecrease, 0.4));
+        });
+
+        // Animate SO3^2- ions in left tank
+        this.galvanicCell.userData.leftSulfateIons.forEach((ion, i) => {
+            ion.userData.angle += ion.userData.speed;
+            const newRadius = ion.userData.radius + Math.sin(time * 0.8 + i) * 0.15;
+            
+            ion.position.x = ion.userData.centerX + Math.cos(ion.userData.angle) * newRadius;
+            ion.position.z = ion.userData.centerZ + Math.sin(ion.userData.angle) * newRadius;
+            ion.position.y = -4 + Math.sin(time * 0.6 + i) * 3 + 4;
+        });
+
+        // Animate SO3^2- ions in right tank
+        this.galvanicCell.userData.rightSulfateIons.forEach((ion, i) => {
+            ion.userData.angle += ion.userData.speed;
+            const newRadius = ion.userData.radius + Math.sin(time * 0.8 + i + Math.PI/3) * 0.15;
+            
+            ion.position.x = ion.userData.centerX + Math.cos(ion.userData.angle) * newRadius;
+            ion.position.z = ion.userData.centerZ + Math.sin(ion.userData.angle) * newRadius;
+            ion.position.y = -4 + Math.sin(time * 0.6 + i + Math.PI/3) * 3 + 4;
+        });
+
+        // Animate Na+ ions moving through salt bridge toward Cu tank
+        this.galvanicCell.userData.sodiumIons.forEach((ion, i) => {
+            ion.userData.progress += ion.userData.speed;
+            
+            if (ion.userData.progress > 1.2) {
+                // Reset ion to start of bridge
+                ion.userData.progress = 0;
+                ion.position.set(-6, 5, (Math.random() - 0.5) * 0.6);
+            }
+            
+            const progress = ion.userData.progress;
+            
+            if (progress <= 1.0) {
+                // Moving through salt bridge
+                ion.position.x = -6 + progress * 12;
+                ion.position.y = 5 + Math.sin(time * 2 + i) * 0.1; // Slight vertical movement
+            } else {
+                // Entering right tank (Cu compartment)
+                const tankProgress = (progress - 1.0) / 0.2;
+                ion.position.x = 6 - tankProgress * 2; // Move into tank
+                ion.position.y = 5 - tankProgress * 8; // Move down into solution
+                // Add circular motion once in tank
+                const angle = time * 0.5 + i;
+                ion.position.z = Math.sin(angle) * 0.5;
+            }
+        });
+
+        // Animate Cl- ions moving through salt bridge toward Zn tank
+        this.galvanicCell.userData.chlorideIons.forEach((ion, i) => {
+            ion.userData.progress += ion.userData.speed;
+            
+            if (ion.userData.progress > 1.2) {
+                // Reset ion to start of bridge
+                ion.userData.progress = 0;
+                ion.position.set(6, 5, (Math.random() - 0.5) * 0.6);
+            }
+            
+            const progress = ion.userData.progress;
+            
+            if (progress <= 1.0) {
+                // Moving through salt bridge
+                ion.position.x = 6 - progress * 12;
+                ion.position.y = 5 + Math.sin(time * 2.5 + i) * 0.1; // Slight vertical movement
+            } else {
+                // Entering left tank (Zn compartment)
+                const tankProgress = (progress - 1.0) / 0.2;
+                ion.position.x = -6 + tankProgress * 2; // Move into tank
+                ion.position.y = 5 - tankProgress * 8; // Move down into solution
+                // Add circular motion once in tank
+                const angle = time * 0.5 + i + Math.PI;
+                ion.position.z = Math.sin(angle) * 0.5;
+            }
+        });
+
+        // Animate bubbles rising from anode (minimal wobbling)
+        this.galvanicCell.userData.bubbles.forEach((bubble, i) => {
+            bubble.position.y += bubble.userData.speed;
+            bubble.userData.wobble += 0.05;
+            
+            // Minimal wobbling motion
+            bubble.position.x += Math.sin(bubble.userData.wobble) * 0.005;
+            
+            // Reset bubble when it reaches top
+            if (bubble.position.y > 5) {
+                bubble.position.set(-5 + Math.random() * 0.5, -5, 0);
+                bubble.userData.speed = 0.02 + Math.random() * 0.02;
+            }
+        });
     }
 
     createEngineSection(deathStar) {
         const engineSection = new THREE.Group();
         engineSection.position.set(0, -10, -15); // Position at back of Death Star
 
-        // Create multiple battery cells
-        const batteryPositions = [
-            { x: -8, y: 0, z: 0 },
-            { x: 0, y: 0, z: 0 },
-            { x: 8, y: 0, z: 0 }
-        ];
-
-        this.batteryCells = batteryPositions.map(pos => {
-            const battery = this.createBatteryCell();
-            battery.position.set(pos.x, pos.y, pos.z);
-            engineSection.add(battery);
-            return battery;
-        });
+        // Create single large galvanic cell
+        this.galvanicCell = this.createGalvanicCell();
+        engineSection.add(this.galvanicCell);
 
         deathStar.add(engineSection);
         this.objects.engineSection = engineSection;
     }
 
-    createBatteryCell() {
-        const battery = new THREE.Group();
+    createGalvanicCell() {
+        const cell = new THREE.Group();
 
-        // Create container (electrolyte solution)
-        const containerGeo = new THREE.CylinderGeometry(2, 2, 8, 16);
-        const containerMat = new THREE.MeshPhongMaterial({
-            color: 0x3366ff,
+        // Create left tank (anode compartment)
+        const leftTankRadius = 4;
+        const tankHeight = 12;
+        const leftTankGeo = new THREE.CylinderGeometry(leftTankRadius, leftTankRadius, tankHeight, 32);
+        const leftTankMat = new THREE.MeshPhongMaterial({
+            color: 0x88ccff,
+            transparent: true,
+            opacity: 0.3,
+            shininess: 100
+        });
+        const leftTank = new THREE.Mesh(leftTankGeo, leftTankMat);
+        leftTank.position.set(-5, 0, 0);
+        cell.add(leftTank);
+
+        // Create right tank (cathode compartment)
+        const rightTankGeo = new THREE.CylinderGeometry(leftTankRadius, leftTankRadius, tankHeight, 32);
+        const rightTankMat = new THREE.MeshPhongMaterial({
+            color: 0x88ccff,
+            transparent: true,
+            opacity: 0.3,
+            shininess: 100
+        });
+        const rightTank = new THREE.Mesh(rightTankGeo, rightTankMat);
+        rightTank.position.set(5, 0, 0);
+        cell.add(rightTank);
+
+        // Create left electrolyte solution (ZnSO3)
+        const leftSolutionGeo = new THREE.CylinderGeometry(leftTankRadius - 0.2, leftTankRadius - 0.2, tankHeight - 0.5, 32);
+        const leftSolutionMat = new THREE.MeshPhongMaterial({
+            color: 0x6699ff,
             transparent: true,
             opacity: 0.4
         });
-        const container = new THREE.Mesh(containerGeo, containerMat);
-        battery.add(container);
+        const leftSolution = new THREE.Mesh(leftSolutionGeo, leftSolutionMat);
+        leftSolution.position.set(-5, 0, 0);
+        cell.add(leftSolution);
 
-        // Create electrodes
-        const electrodeGeo = new THREE.CylinderGeometry(0.3, 0.3, 7, 8);
+        // Create right electrolyte solution (CuSO3)
+        const rightSolutionGeo = new THREE.CylinderGeometry(leftTankRadius - 0.2, leftTankRadius - 0.2, tankHeight - 0.5, 32);
+        const rightSolutionMat = new THREE.MeshPhongMaterial({
+            color: 0x4488bb,
+            transparent: true,
+            opacity: 0.4
+        });
+        const rightSolution = new THREE.Mesh(rightSolutionGeo, rightSolutionMat);
+        rightSolution.position.set(5, 0, 0);
+        cell.add(rightSolution);
+
+        // Create Zinc anode (left electrode)
+        const anodeGeo = new THREE.BoxGeometry(0.8, tankHeight - 2, 2);
+        const anodeMat = new THREE.MeshPhongMaterial({
+            color: 0x999999,
+            shininess: 30
+        });
+        const anode = new THREE.Mesh(anodeGeo, anodeMat);
+        anode.position.set(-5, 0, 0);
+        cell.add(anode);
+
+        // Create Copper cathode (right electrode)
+        const cathodeGeo = new THREE.BoxGeometry(0.8, tankHeight - 2, 2);
+        const cathodeMat = new THREE.MeshPhongMaterial({
+            color: 0xcd7f32,
+            shininess: 80
+        });
+        const cathode = new THREE.Mesh(cathodeGeo, cathodeMat);
+        cathode.position.set(5, 0, 0);
+        cell.add(cathode);
+
+        // Create salt bridge connecting the two tanks
+        const bridgeGeo = new THREE.CylinderGeometry(0.4, 0.4, 12, 16);
+        const bridgeMat = new THREE.MeshPhongMaterial({
+            color: 0x666666,
+            transparent: true,
+            opacity: 0.8
+        });
+        const bridge = new THREE.Mesh(bridgeGeo, bridgeMat);
+        bridge.rotation.z = Math.PI / 2;
+        bridge.position.y = tankHeight / 2 - 1;
+        cell.add(bridge);
+
+        // Create Na+ ions in salt bridge (moving toward Cu tank)
+        const sodiumIons = [];
+        const sodiumIonGeo = new THREE.SphereGeometry(0.12, 8, 8);
+        const sodiumIonMat = new THREE.MeshPhongMaterial({
+            color: 0x9900ff,
+            emissive: 0x330055,
+            emissiveIntensity: 0.3
+        });
+
+        for (let i = 0; i < 6; i++) {
+            const ion = new THREE.Mesh(sodiumIonGeo, sodiumIonMat);
+            const progress = i / 6;
+            ion.position.set(
+                -6 + progress * 12, // Start at left end of bridge
+                tankHeight / 2 - 1,
+                (Math.random() - 0.5) * 0.6 // Slight random Z position within bridge
+            );
+            ion.userData.progress = progress;
+            ion.userData.speed = 0.003 + Math.random() * 0.002;
+            ion.userData.targetTank = 'right'; // Moving toward Cu tank
+            cell.add(ion);
+            sodiumIons.push(ion);
+        }
+
+        // Create Cl- ions in salt bridge (moving toward Zn tank)
+        const chlorideIons = [];
+        const chlorideIonGeo = new THREE.SphereGeometry(0.14, 8, 8);
+        const chlorideIonMat = new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            emissive: 0x333333,
+            emissiveIntensity: 0.2
+        });
+
+        for (let i = 0; i < 6; i++) {
+            const ion = new THREE.Mesh(chlorideIonGeo, chlorideIonMat);
+            const progress = i / 6;
+            ion.position.set(
+                6 - progress * 12, // Start at right end of bridge
+                tankHeight / 2 - 1,
+                (Math.random() - 0.5) * 0.6 // Slight random Z position within bridge
+            );
+            ion.userData.progress = progress;
+            ion.userData.speed = 0.003 + Math.random() * 0.002;
+            ion.userData.targetTank = 'left'; // Moving toward Zn tank
+            cell.add(ion);
+            chlorideIons.push(ion);
+        }
+
+        // Create external wire connecting both electrodes
+        const wireGroup = new THREE.Group();
         
-        // Anode (Zinc)
-        const anodeMat = new THREE.MeshPhongMaterial({ color: 0x999999 });
-        const anode = new THREE.Mesh(electrodeGeo, anodeMat);
-        anode.position.x = -0.8;
-        battery.add(anode);
+        // Vertical wire from anode
+        const wireLeft = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.1, 0.1, 2, 8),
+            new THREE.MeshPhongMaterial({ color: 0x333333, shininess: 100 })
+        );
+        wireLeft.position.set(-5, tankHeight / 2 + 1, 0);
+        cell.add(wireLeft);
+        
+        // Horizontal wire across the top
+        const wireTop = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.1, 0.1, 12, 8),
+            new THREE.MeshPhongMaterial({ color: 0x333333, shininess: 100 })
+        );
+        wireTop.rotation.z = Math.PI / 2;
+        wireTop.position.y = tankHeight / 2 + 2;
+        cell.add(wireTop);
+        
+        // Vertical wire to cathode
+        const wireRight = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.1, 0.1, 2, 8),
+            new THREE.MeshPhongMaterial({ color: 0x333333, shininess: 100 })
+        );
+        wireRight.position.set(5, tankHeight / 2 + 1, 0);
+        cell.add(wireRight);
 
-        // Cathode (Copper)
-        const cathodeMat = new THREE.MeshPhongMaterial({ color: 0xcd7f32 });
-        const cathode = new THREE.Mesh(electrodeGeo, cathodeMat);
-        cathode.position.x = 0.8;
-        battery.add(cathode);
-
-        // Add electrons for animation
+        // Create electrons flowing along the wire path
         const electrons = [];
         const electronGeo = new THREE.SphereGeometry(0.15, 8, 8);
         const electronMat = new THREE.MeshPhongMaterial({
             color: 0xffff00,
             emissive: 0xffff00,
-            emissiveIntensity: 0.5
+            emissiveIntensity: 0.8
         });
 
         for (let i = 0; i < 8; i++) {
             const electron = new THREE.Mesh(electronGeo, electronMat);
-            electron.position.set(-0.8, -3 + i, 0);
-            electron.userData.baseY = -3 + i;
-            electron.userData.phase = i * Math.PI / 4;
-            battery.add(electron);
+            const progress = i / 8;
+            electron.userData.progress = progress;
+            electron.userData.wireY = tankHeight / 2 + 2;
+            
+            // Calculate initial position along wire path
+            if (progress < 0.25) {
+                // Moving up left wire
+                electron.position.set(-5, tankHeight / 2 + progress * 8, 0);
+            } else if (progress < 0.75) {
+                // Moving across top wire
+                const topProgress = (progress - 0.25) / 0.5;
+                electron.position.set(-5 + topProgress * 10, electron.userData.wireY, 0);
+            } else {
+                // Moving down right wire
+                const downProgress = (progress - 0.75) / 0.25;
+                electron.position.set(5, electron.userData.wireY - downProgress * 2, 0);
+            }
+            
+            cell.add(electron);
             electrons.push(electron);
         }
 
-        battery.userData.electrons = electrons;
-        return battery;
+        // Create Zn2+ ions in left tank
+        const zincIons = [];
+        const zincIonGeo = new THREE.SphereGeometry(0.2, 8, 8);
+        const zincIonMat = new THREE.MeshPhongMaterial({
+            color: 0x00ffff,
+            emissive: 0x004444,
+            emissiveIntensity: 0.3
+        });
+
+        for (let i = 0; i < 8; i++) {
+            const ion = new THREE.Mesh(zincIonGeo, zincIonMat);
+            const angle = (i / 8) * Math.PI * 2;
+            const radius = 1.5 + Math.random() * 1.5;
+            ion.position.set(
+                -5 + Math.cos(angle) * radius,
+                -4 + Math.random() * 8,
+                Math.sin(angle) * radius
+            );
+            ion.userData.centerX = -5;
+            ion.userData.centerZ = 0;
+            ion.userData.angle = angle;
+            ion.userData.radius = radius;
+            ion.userData.speed = 0.005 + Math.random() * 0.005;
+            cell.add(ion);
+            zincIons.push(ion);
+        }
+
+        // Create Cu2+ ions in right tank
+        const copperIons = [];
+        const copperIonGeo = new THREE.SphereGeometry(0.2, 8, 8);
+        const copperIonMat = new THREE.MeshPhongMaterial({
+            color: 0xff6600,
+            emissive: 0x442200,
+            emissiveIntensity: 0.3
+        });
+
+        for (let i = 0; i < 8; i++) {
+            const ion = new THREE.Mesh(copperIonGeo, copperIonMat);
+            const angle = (i / 8) * Math.PI * 2;
+            const radius = 1.5 + Math.random() * 1.5;
+            ion.position.set(
+                5 + Math.cos(angle) * radius,
+                -4 + Math.random() * 8,
+                Math.sin(angle) * radius
+            );
+            ion.userData.centerX = 5;
+            ion.userData.centerZ = 0;
+            ion.userData.angle = angle;
+            ion.userData.radius = radius;
+            ion.userData.speed = 0.005 + Math.random() * 0.005;
+            cell.add(ion);
+            copperIons.push(ion);
+        }
+
+        // Create SO3^2- ions in left tank
+        const leftSulfateIons = [];
+        const sulfateIonGeo = new THREE.SphereGeometry(0.18, 8, 8);
+        const sulfateIonMat = new THREE.MeshPhongMaterial({
+            color: 0xff0044,
+            emissive: 0x440011,
+            emissiveIntensity: 0.3
+        });
+
+        for (let i = 0; i < 8; i++) {
+            const ion = new THREE.Mesh(sulfateIonGeo, sulfateIonMat);
+            const angle = (i / 8) * Math.PI * 2 + Math.PI / 8; // Offset from metal ions
+            const radius = 1.8 + Math.random() * 1.2;
+            ion.position.set(
+                -5 + Math.cos(angle) * radius,
+                -4 + Math.random() * 8,
+                Math.sin(angle) * radius
+            );
+            ion.userData.centerX = -5;
+            ion.userData.centerZ = 0;
+            ion.userData.angle = angle;
+            ion.userData.radius = radius;
+            ion.userData.speed = 0.004 + Math.random() * 0.004;
+            cell.add(ion);
+            leftSulfateIons.push(ion);
+        }
+
+        // Create SO3^2- ions in right tank
+        const rightSulfateIons = [];
+        for (let i = 0; i < 8; i++) {
+            const ion = new THREE.Mesh(sulfateIonGeo, sulfateIonMat.clone());
+            const angle = (i / 8) * Math.PI * 2 + Math.PI / 8; // Offset from metal ions
+            const radius = 1.8 + Math.random() * 1.2;
+            ion.position.set(
+                5 + Math.cos(angle) * radius,
+                -4 + Math.random() * 8,
+                Math.sin(angle) * radius
+            );
+            ion.userData.centerX = 5;
+            ion.userData.centerZ = 0;
+            ion.userData.angle = angle;
+            ion.userData.radius = radius;
+            ion.userData.speed = 0.004 + Math.random() * 0.004;
+            cell.add(ion);
+            rightSulfateIons.push(ion);
+        }
+
+        // Create bubbles for gas evolution at anode
+        const bubbles = [];
+        const bubbleGeo = new THREE.SphereGeometry(0.1, 6, 6);
+        const bubbleMat = new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.6
+        });
+
+        for (let i = 0; i < 3; i++) {
+            const bubble = new THREE.Mesh(bubbleGeo, bubbleMat);
+            bubble.position.set(-5 + Math.random() * 0.5, -5, 0);
+            bubble.userData.speed = 0.02 + Math.random() * 0.02;
+            bubble.userData.wobble = Math.random() * Math.PI * 2;
+            cell.add(bubble);
+            bubbles.push(bubble);
+        }
+
+        // Store animation elements
+        cell.userData.electrons = electrons;
+        cell.userData.zincIons = zincIons;
+        cell.userData.copperIons = copperIons;
+        cell.userData.leftSulfateIons = leftSulfateIons;
+        cell.userData.rightSulfateIons = rightSulfateIons;
+        cell.userData.sodiumIons = sodiumIons;
+        cell.userData.chlorideIons = chlorideIons;
+        cell.userData.bubbles = bubbles;
+        cell.userData.animationTime = 0;
+        cell.userData.zincAnode = anode;
+        cell.userData.copperCathode = cathode;
+        cell.userData.reactionProgress = 0; // Track overall reaction progress
+
+        return cell;
     }
 
     zoomToEngines() {
@@ -1252,13 +1703,10 @@ class DeathStarSimulation {
 
     startEngineAnimation() {
         this.engineAnimationActive = true;
-        this.batteryCells.forEach(battery => {
-            battery.userData.electrons.forEach((electron, i) => {
-                electron.userData.time = 0;
-                electron.userData.startX = -0.8; // Start at anode
-                electron.userData.endX = 0.8;   // End at cathode
-            });
-        });
+        // Initialize animation state for galvanic cell
+        if (this.galvanicCell) {
+            this.galvanicCell.userData.animationTime = 0;
+        }
     }
 
     hyperspacejump() {
@@ -1335,6 +1783,24 @@ class DeathStarSimulation {
         if (this.starfield) {
             this.starfield.rotation.y += 0.0001;
             this.starfield.rotation.z += 0.0001;
+        }
+
+        // Animate galvanic cell if engine animation is active
+        if (this.engineAnimationActive && this.galvanicCell) {
+            this.animateGalvanicCell();
+        }
+
+        // Animate photons
+        if (this.photons && this.photons.length > 0) {
+            this.photons.forEach((photon, index) => {
+                photon.position.add(photon.userData.velocity);
+                
+                // Remove photons that have traveled too far
+                if (photon.position.distanceTo(this.objects.superlaser.position) > 50) {
+                    this.scene.remove(photon);
+                    this.photons.splice(index, 1);
+                }
+            });
         }
 
         this.renderer.render(this.scene, this.camera);

@@ -187,13 +187,55 @@ zoomEnginesBtn.onclick = async ()=>{
     bat.userData.electronPhase = 0;
   });
   // Chemistry explanation
-  showChemistry(`<h3>Galvanic Cell Engines</h3>
-    <p>The Death Star's engines are powered by battery cells (galvanic/voltaic cells). 
-    Electrons flow from the anode (Zn) to the cathode (Cu) through an external circuit, 
-    driven by a spontaneous redox reaction:</p>
-    <pre>Zn (s) + Cu<sup>2+</sup> (aq) → Zn<sup>2+</sup> (aq) + Cu (s)</pre>
-    <p>Electrons are depicted as yellow spheres, moving from anode to cathode, 
-    representing electrical current powering the Death Star.</p>
+  showChemistry(`<h3>AP Chemistry Unit 9 (Electrochemistry) — Topic 9.4: Galvanic Cells</h3>
+    <p>The Death Star's engines utilize Daniell galvanic cells demonstrating fundamental electrochemical principles across multiple AP Chemistry topics:</p>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Anode Compartment (Zn(s) | ZnSO₃(aq)):</h4>
+        <p><strong>Oxidation Half-Reaction:</strong> Zn(s) → Zn²⁺(aq) + 2e⁻  E° = +0.76 V</p>
+        <p><strong>Electrolyte:</strong> ZnSO₃(aq) (zinc sulfite solution)</p>
+        <p>Zinc metal undergoes oxidation, losing electrons and forming hydrated zinc ions</p>
+        <p><span style="color: #666666;">Gray electrode:</span> Solid zinc metal (decreases in mass over time)</p>
+        <p><span style="color: #00ffff;">Cyan spheres:</span> Zn²⁺(aq) ions produced by oxidation</p>
+        <p><span style="color: #ff0044;">Red spheres:</span> SO₃²⁻ spectator ions</p>
+        <p><strong>Particle-Level Process:</strong> Zn atoms lose 2 electrons, becoming Zn²⁺ ions in solution</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Cathode Compartment (Cu²⁺(aq) | CuSO₃(aq)):</h4>
+        <p><strong>Reduction Half-Reaction:</strong> Cu²⁺(aq) + 2e⁻ → Cu(s)  E° = +0.34 V</p>
+        <p><strong>Electrolyte:</strong> CuSO₃(aq) (copper(II) sulfite solution)</p>
+        <p>Copper ions gain electrons, depositing as solid copper metal</p>
+        <p><span style="color: #dddddd;">Silver electrode:</span> Copper metal deposits (increases in mass)</p>
+        <p><span style="color: #ff6600;">Orange spheres:</span> Cu²⁺(aq) ions being reduced</p>
+        <p><span style="color: #ff0044;">Red spheres:</span> SO₃²⁻ spectator ions</p>
+        <p><strong>Particle-Level Process:</strong> Cu²⁺ ions gain 2 electrons, becoming Cu atoms on electrode</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Salt Bridge Function (NaCl electrolyte):</h4>
+        <p>Maintains electrical neutrality by completing the internal circuit</p>
+        <p><span style="color: #9900ff;">Purple spheres:</span> Na⁺ ions migrate toward cathode compartment</p>
+        <p><span style="color: #ffffff;">White spheres:</span> Cl⁻ ions migrate toward anode compartment</p>
+        <p><span style="color: #ffff00;">Yellow spheres:</span> Electrons flow through external circuit</p>
+        <p><strong>Function:</strong> Prevents charge buildup that would stop the reaction</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Thermodynamic Analysis:</h4>
+        <p><strong>Overall Cell Reaction:</strong> Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)</p>
+        <p><strong>Standard Cell Potential:</strong> E°cell = E°cathode - E°anode = 0.34V - (-0.76V) = +1.10V</p>
+        <p><strong>Gibbs Free Energy:</strong> ΔG° = -nFE°cell = -2(96,485)(1.10) = -212 kJ/mol</p>
+        <p><strong>Spontaneity:</strong> ΔG° < 0, therefore thermodynamically favorable</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>AP Chemistry Connections:</h4>
+        <p><strong>Scientific Practice 1.B:</strong> Describes models illustrating particulate-level and macroscopic properties</p>
+        <p><strong>Scientific Practice 4.C:</strong> Explains connection between particulate-level properties and macroscopic phenomena</p>
+        <p><strong>Topics 9.1-9.4:</strong> Oxidation-reduction reactions, galvanic cells, cell potentials, thermodynamics</p>
+        <p><strong>Cross-Curricular:</strong> Connects to Units 4 (chemical reactions) and 6 (thermodynamics)</p>
+    </div>
   `);
 };
 
@@ -212,14 +254,57 @@ zoomSuperlaserBtn.onclick = async ()=>{
     new THREE.Vector3(18, 10, -315), 1200
   );
   setMode(4);
-  showChemistry(`<h3>Superlaser Chemistry</h3>
-    <p>The superlaser uses a fictional high-energy chemical reaction and the photoelectric effect to emit a powerful beam:</p>
-    <ul>
-      <li>Energy excites electrons in a cathode material, causing emission of photons (laser light) via the photoelectric effect.</li>
-      <li><b>Photoelectric effect:</b> e<sup>-</sup> + hν → e<sup>-</sup> (emitted)</li>
-      <li>Population inversion and stimulated emission amplify the photons into a coherent laser beam.</li>
-    </ul>
-    <p>Real lasers use materials like ruby or semiconductors; here, a powerful reaction drives the process.</p>
+  showChemistry(`<h3>AP Chemistry Topics 1.7 & 1.8: Photoelectric Effect & Electromagnetic Radiation</h3>
+    <p>The Death Star's superlaser operates through advanced quantum mechanical processes involving photon-electron interactions:</p>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Photoelectric Effect (Topic 1.8):</h4>
+        <p><strong>Einstein's Photoelectric Equation:</strong> KE<sub>max</sub> = hf - φ</p>
+        <p>where φ is the work function of the focusing crystal material</p>
+        <p><strong>Threshold Condition:</strong> f ≥ f₀ = φ/h (minimum frequency for electron emission)</p>
+        <p><strong>Process:</strong> Crystal + hν → Crystal⁺ + e⁻ (photoelectron emission)</p>
+        <p><strong>Key Principles:</strong></p>
+        <ul>
+            <li>Energy is quantized (E = hf)</li>
+            <li>One photon can only eject one electron</li>
+            <li>Excess energy becomes kinetic energy of photoelectron</li>
+            <li>Intensity affects number of electrons, not their energy</li>
+        </ul>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Laser Physics & Electromagnetic Radiation (Topic 1.7):</h4>
+        <p><strong>1. Population Inversion:</strong> N₂ > N₁ (more electrons in excited state than ground state)</p>
+        <p><strong>2. Stimulated Emission:</strong> E₂ + hν → E₁ + 2hν (coherent photon production)</p>
+        <p><strong>3. Amplification Process:</strong> Cascade of coherent photon production</p>
+        <p><strong>4. Resonant Cavity:</strong> Mirrors create standing wave patterns for coherent amplification</p>
+        <p><strong>Wavelength-Energy Relationship:</strong> λ = hc/E = hc/(E₂ - E₁)</p>
+        <p><strong>Coherence Properties:</strong> Same frequency, phase, and propagation direction</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Quantitative Analysis:</h4>
+        <p><strong>Laser Wavelength:</strong> λ = 532 nm (green light)</p>
+        <p><strong>Photon Frequency:</strong> f = c/λ = (3.00 × 10⁸ m/s)/(532 × 10⁻⁹ m) = 5.64 × 10¹⁴ Hz</p>
+        <p><strong>Photon Energy:</strong> E = hf = (6.626 × 10⁻³⁴ J·s)(5.64 × 10¹⁴ Hz) = 3.74 × 10⁻¹⁹ J</p>
+        <p><strong>Energy per mole:</strong> E = NAhf = (6.022 × 10²³)(3.74 × 10⁻¹⁹ J) = 225 kJ/mol</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Focusing Crystal Components:</h4>
+        <p><span style="color: #00ff88;">Green crystals:</span> Active laser medium (analogous to ruby or semiconductor lasers)</p>
+        <p><strong>Energy Level Structure:</strong> ΔE = E₂ - E₁ determines laser wavelength</p>
+        <p><strong>Crystal Lattice Function:</strong> Provides ordered structure for coherent emission</p>
+        <p><strong>Beam Characteristics:</strong> Highly collimated, monochromatic, coherent</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>AP Chemistry Scientific Practices:</h4>
+        <p><strong>Scientific Practice 1.A:</strong> Describes atomic structure and photon interactions</p>
+        <p><strong>Scientific Practice 4.A:</strong> Explains electromagnetic phenomena using quantum models</p>
+        <p><strong>Scientific Practice 6.D:</strong> Provides reasoning about light-matter interactions</p>
+        <p><strong>Cross-Unit Connections:</strong> Links to atomic structure (Unit 1) and bonding (Unit 2)</p>
+    </div>
   `);
 };
 
@@ -251,14 +336,58 @@ zoomImpactBtn.onclick = async ()=>{
     new THREE.Vector3(120,0,-300), 1200
   );
   setMode(7);
-  showChemistry(`<h3>Impact: Heat Transfer & Chemistry</h3>
-    <p>The laser's energy is transferred to the planet's surface, causing rapid heating and vaporization:</p>
-    <ul>
-      <li><b>Energy transfer:</b> E = mcΔT</li>
-      <li>Rapid heat causes chemical bonds to break; material ionizes and vaporizes.</li>
-      <li>Phase change and plasma formation result in explosive expansion.</li>
-    </ul>
-    <p>Example: SiO<sub>2</sub> (solid) → SiO<sub>2</sub> (gas) + energy</p>
+  showChemistry(`<h3>AP Chemistry Topics 6.1, 6.2 & 7.1: Thermodynamics & Intermolecular Forces</h3>
+    <p>When the superlaser strikes the planet, multiple thermodynamic and intermolecular processes occur simultaneously:</p>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Heat Transfer & Calorimetry (Topic 6.1):</h4>
+        <p><strong>Heat Capacity Equation:</strong> q = mcΔT</p>
+        <p><strong>Temperature Change:</strong> Initial T ≈ 300K → Final T > 10⁶K</p>
+        <p><strong>Enthalpy of Impact:</strong> ΔH = q<sub>p</sub> (heat transfer at constant pressure)</p>
+        <p><strong>Radiative Heat Transfer:</strong> Stefan-Boltzmann law: j = σT⁴</p>
+        <p><strong>Energy Flux:</strong> Massive energy input exceeds heat capacity of materials</p>
+        <p><strong>Result:</strong> Rapid temperature rise causes phase transitions and bond breaking</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Phase Changes & Intermolecular Forces (Topic 7.1):</h4>
+        <p><strong>Solid → Gas Transition:</strong> SiO₂(s) + energy → SiO₂(g) (sublimation)</p>
+        <p><strong>Intermolecular Forces Overcome:</strong></p>
+        <ul>
+            <li>London dispersion forces (all molecules)</li>
+            <li>Dipole-dipole interactions (polar molecules)</li>
+            <li>Hydrogen bonding (H₂O, NH₃, HF type compounds)</li>
+            <li>Network covalent bonds (SiO₂, diamond structure)</li>
+        </ul>
+        <p><strong>Phase Diagram Analysis:</strong> Extreme conditions exceed critical point</p>
+        <p><strong>Heat of Vaporization:</strong> ΔH<sub>vap</sub> << E<sub>laser</sub> (easily exceeded)</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Chemical Bond Breaking & Ionization:</h4>
+        <p><strong>Covalent Bond Dissociation:</strong> A-B + energy → A• + B• (homolytic cleavage)</p>
+        <p><strong>Ionization Energy:</strong> M(g) + energy → M⁺(g) + e⁻</p>
+        <p><strong>Bond Energy Comparison:</strong> E<sub>thermal</sub> >> E<sub>bond</sub> (bonds easily broken)</p>
+        <p><strong>Ionic Compound Dissociation:</strong> Complete breakdown of crystal lattices</p>
+        <p><strong>Plasma Formation:</strong> Complete ionization at extreme temperatures</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Macroscopic Observations & Gas Laws:</h4>
+        <p><strong>Ideal Gas Law:</strong> PV = nRT (massive volume expansion)</p>
+        <p><strong>Explosive Expansion:</strong> ΔV/V<sub>initial</sub> >> 1000 (gases occupy much more volume)</p>
+        <p><strong>Gravitational Binding Energy:</strong> E<sub>expansion</sub> > E<sub>gravitational</sub></p>
+        <p><strong>Blackbody Radiation:</strong> Hot gases emit visible light spectrum</p>
+        <p><strong>Shock Wave Propagation:</strong> Pressure waves exceed sound speed</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>AP Chemistry Scientific Practices:</h4>
+        <p><strong>Scientific Practice 1.B:</strong> Models illustrating both particulate-level and macroscopic properties</p>
+        <p><strong>Scientific Practice 4.C:</strong> Connects particulate-level interactions to macroscopic phenomena</p>
+        <p><strong>Scientific Practice 6.D:</strong> Uses chemical principles to justify planetary destruction</p>
+        <p><strong>Cross-Unit Integration:</strong> Combines thermodynamics (Unit 6), bonding (Unit 2), and gases (Unit 3)</p>
+    </div>
   `);
 };
 
@@ -293,9 +422,52 @@ explodePlanetBtn.onclick = async ()=>{
   }
   planet.visible = false;
   // Chemistry
-  showChemistry(`<h3>Planet Destruction</h3>
-    <p>Extreme heat and rapid energy transfer cause massive chemical bond breakage and vaporization. 
-    The planet explodes as the energy exceeds gravitational binding energy.</p>
+  showChemistry(`<h3>AP Chemistry Topic 6.5: Energy Conservation & Thermodynamic Analysis</h3>
+    <p>The complete Death Star firing sequence demonstrates energy conservation across multiple scales and transformations:</p>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Energy Transfer Chain Analysis:</h4>
+        <p><strong>1. Chemical Energy:</strong> Galvanic cell reactions (ΔG° = -212 kJ/mol)</p>
+        <p><strong>2. Electrical Energy:</strong> Electron flow through external circuits</p>
+        <p><strong>3. Electromagnetic Energy:</strong> Coherent photon beam (E = nhf)</p>
+        <p><strong>4. Thermal Energy:</strong> Heat generation at impact site</p>
+        <p><strong>5. Kinetic Energy:</strong> Explosive expansion and debris motion</p>
+        <p><strong>Conservation Principle:</strong> E<sub>total,initial</sub> = E<sub>total,final</sub> (First Law of Thermodynamics)</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Quantitative Energy Analysis:</h4>
+        <p><strong>Photon Beam Energy:</strong> E<sub>beam</sub> = nhf where n = number of photons</p>
+        <p><strong>Power Density:</strong> I = E<sub>beam</sub>/(A × t) where A = beam cross-section, t = time</p>
+        <p><strong>Energy per Photon:</strong> E<sub>photon</sub> = hf = 3.74 × 10⁻¹⁹ J (λ = 532 nm)</p>
+        <p><strong>Total Beam Power:</strong> P = n × E<sub>photon</sub> × frequency of emission</p>
+        <p><strong>Critical Threshold:</strong> E<sub>input</sub> > E<sub>binding,gravitational</sub> for planetary destruction</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Thermodynamic Principles:</h4>
+        <p><strong>First Law:</strong> ΔU = q - w (internal energy change)</p>
+        <p><strong>Heat Capacity Exceeded:</strong> q<sub>input</sub> >> mc<sub>p</sub>ΔT<sub>max</sub></p>
+        <p><strong>Phase Change Energy:</strong> All ΔH<sub>fusion</sub> and ΔH<sub>vaporization</sub> values exceeded</p>
+        <p><strong>Bond Dissociation:</strong> E<sub>thermal</sub> > Σ(bond energies) causes complete molecular breakdown</p>
+        <p><strong>Entropy Increase:</strong> ΔS<sub>universe</sub> > 0 (highly disordered final state)</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>Scale-Bridging Analysis:</h4>
+        <p><strong>Molecular Level:</strong> Bond breaking, ionization, electronic excitation</p>
+        <p><strong>Macroscopic Level:</strong> Phase changes, temperature rise, visible destruction</p>
+        <p><strong>Astronomical Level:</strong> Gravitational binding energy overcome, debris field formation</p>
+        <p><strong>Energy Efficiency:</strong> Chemical → Mechanical conversion demonstrates real-world limitations</p>
+    </div>
+    
+    <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
+        <h4>AP Chemistry Scientific Practices Integration:</h4>
+        <p><strong>Scientific Practice 4.A:</strong> Uses models to explain large-scale phenomena through molecular-level processes</p>
+        <p><strong>Scientific Practice 6.D:</strong> Provides quantitative reasoning using conservation principles</p>
+        <p><strong>Scientific Practice 1.E:</strong> Identifies patterns across different scales of matter</p>
+        <p><strong>Cross-Curricular Connections:</strong> Integrates Units 1 (atomic structure), 6 (thermodynamics), and 9 (electrochemistry)</p>
+    </div>
   `);
 };
 

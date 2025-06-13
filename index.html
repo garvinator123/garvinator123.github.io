@@ -21,6 +21,10 @@
             top: 20px;
             left: 20px;
             z-index: 100;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            max-width: 80vw;
         }
         .button {
             background: rgba(0, 150, 255, 0.2);
@@ -45,13 +49,90 @@
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             color: #0f0;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
-            max-width: 400px;
+            max-width: 500px;
+            max-height: 40vh;
+            overflow-y: auto;
             display: none;
             border: 1px solid #0f0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        #info-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+        #info-panel::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+        #info-panel::-webkit-scrollbar-thumb {
+            background: #0f0;
+            border-radius: 4px;
+        }
+        #info-panel::-webkit-scrollbar-thumb:hover {
+            background: #0a0;
+        }
+        #info-panel h3 {
+            margin-top: 0;
+            color: #0ff;
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 5px;
+        }
+        #info-panel h4 {
+            color: #0f0;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        #info-panel div {
+            margin: 10px 0;
+        }
+        #chemistry-explanation {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #0f0;
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 500px;
+            max-height: 40vh;
+            overflow-y: auto;
+            display: none;
+            border: 1px solid #0f0;
+            font-size: 14px;
+            line-height: 1.4;
+            z-index: 1000;
+        }
+        #chemistry-explanation::-webkit-scrollbar {
+            width: 8px;
+        }
+        #chemistry-explanation::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+        #chemistry-explanation::-webkit-scrollbar-thumb {
+            background: #0f0;
+            border-radius: 4px;
+        }
+        #chemistry-explanation::-webkit-scrollbar-thumb:hover {
+            background: #0a0;
+        }
+        #chemistry-explanation h3 {
+            margin-top: 0;
+            color: #0ff;
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 5px;
+        }
+        #chemistry-explanation h4 {
+            color: #0f0;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        #chemistry-explanation div {
+            margin: 10px 0;
         }
         .loading {
             position: fixed;
@@ -78,6 +159,7 @@
     </div>
 
     <div id="info-panel"></div>
+    <div id="chemistry-explanation"></div>
 
     <!-- Three.js and dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
