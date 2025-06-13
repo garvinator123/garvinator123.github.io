@@ -890,12 +890,12 @@ class DeathStarSimulation {
         switch(section) {
             case 'engines':
                 content = `
-                    <h3>AP Chemistry Unit 9 (Electrochemistry) — Topic 9.4: Galvanic Cells</h3>
+                    <h3>AP Chemistry Unit 9 (Electrochemistry) — Topic 9.7: Galvanic Cells</h3>
                     <p>The Death Star's engines are powered by Daniell galvanic cells with separate half-cell compartments demonstrating fundamental electrochemical principles:</p>
                     
                     <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
                         <h4>Anode Compartment (Left Tank - Zn(s) | ZnSO₃(aq)):</h4>
-                        <p><strong>Oxidation Half-Reaction:</strong> Zn(s) → Zn²⁺(aq) + 2e⁻  E° = +0.76 V</p>
+                        <p><strong>Oxidation Half-Reaction:</strong> Zn(s) → Zn²⁺(aq) + 2e⁻  E° = -0.76 V</p>
                         <p><strong>Electrolyte:</strong> ZnSO₃(aq) (zinc sulfite solution)</p>
                         <p><strong>Particle-Level Process:</strong> Zn atoms lose 2 electrons each, becoming hydrated Zn²⁺ ions</p>
                         <p><span style="color: #00ffff;">Cyan spheres:</span> Zn²⁺(aq) ions in solution (concentration increases over time)</p>
@@ -936,7 +936,6 @@ class DeathStarSimulation {
                         <p><strong>Scientific Practice 1.B:</strong> Describes models illustrating both particulate-level and macroscopic properties</p>
                         <p><strong>Scientific Practice 4.C:</strong> Explains connection between particulate-level reactions and macroscopic phenomena</p>
                         <p><strong>Scientific Practice 6.D:</strong> Provides reasoning about electrochemical processes using chemical principles</p>
-                        <p><strong>Topics Integration:</strong> Units 4 (reactions), 6 (thermodynamics), and 9 (electrochemistry)</p>
                     </div>
                 `;
                 break;
@@ -983,17 +982,14 @@ class DeathStarSimulation {
                     
                     <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
                         <h4>AP Chemistry Scientific Practices Integration:</h4>
-                        <p><strong>Scientific Practice 4.A:</strong> Explains electromagnetic phenomena using quantum models and energy conservation</p>
-                        <p><strong>Scientific Practice 6.D:</strong> Provides quantitative reasoning using chemical principles and mathematical relationships</p>
-                        <p><strong>Scientific Practice 1.E:</strong> Identifies patterns in energy transformations across different systems</p>
-                        <p><strong>Cross-Unit Connections:</strong> Integrates atomic structure (Unit 1), thermodynamics (Unit 6), and electrochemistry (Unit 9)</p>
+                        <p><strong>Scientific Practice 4.C:</strong> Connecting Particulate & Macroscopic - Cell to powering laser</p>
                     </div>
                 `;
                 break;
 
             case 'laser':
                 content = `
-                    <h3>Photoelectric Effect & Laser Operation - AP Chemistry Topics 1.7 & 1.8</h3>
+                    <h3>Photoelectric Effect & Laser Operation - AP Chemistry Topics 1.7 & 3.12</h3>
                     <p>The superlaser operates through quantum mechanical processes involving photon-electron interactions:</p>
                     
                     <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
@@ -1020,7 +1016,7 @@ class DeathStarSimulation {
                     </div>
                     
                     <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
-                        <p><strong>Scientific Practice 1.A:</strong> Describes components illustrating particulate-level properties</p>
+                        <p><strong>Scientific Practice 1.B:</strong> Describes components illustrating particulate-level properties and macroscopic output</p>
                         <p><strong>Scientific Practice 4.A:</strong> Explains phenomena using quantum models</p>
                     </div>
                 `;
@@ -1028,7 +1024,7 @@ class DeathStarSimulation {
                 
             case 'firing':
                 content = `
-                    <h3>Firing Sequence Analysis - AP Chemistry Topics 6.1 & 6.5</h3>
+                    <h3>Firing Sequence Analysis - AP Chemistry Topics 6.3</h3>
                     <p>The complete energy transfer sequence demonstrates conservation of energy across multiple scales:</p>
                     
                     <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
@@ -1054,15 +1050,14 @@ class DeathStarSimulation {
                     </div>
                     
                     <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
-                        <p><strong>Scientific Practice 4.A:</strong> Explains phenomena using models</p>
-                        <p><strong>Scientific Practice 6.D:</strong> Justifies claims using chemical principles</p>
+                        <p><strong>Scientific Practice 4.C:</strong> Links changes to atomic and macroscopic</p>
                     </div>
                 `;
                 break;
             
             case 'impact':
                 content = `
-                    <h3>Impact Analysis - AP Chemistry Topics 6.1, 6.2 & 7.1</h3>
+                    <h3>Impact Analysis - AP Chemistry Topics 1.7 & 6.5</h3>
                     <p>When the superlaser strikes the planet, multiple thermodynamic and intermolecular processes occur:</p>
                     
                     <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
@@ -1099,6 +1094,7 @@ class DeathStarSimulation {
                     <div style="border: 1px solid #0f0; padding: 10px; margin: 10px 0;">
                         <p><strong>Scientific Practice 1.B:</strong> Models illustrating particulate and macroscopic properties</p>
                         <p><strong>Scientific Practice 4.C:</strong> Connects particulate-level and macroscopic properties</p>
+                        <p><strong>Scientific Practice 6.D:</strong> q=mcΔT, mathematical justificaiton</p>
                     </div>
                 `;
                 break;
